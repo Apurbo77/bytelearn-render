@@ -7,16 +7,10 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
             refresh: true,
+            ssr: false,
         }),
         tailwindcss(),
     ],
-    build: {
-        rollupOptions: {
-            input: {
-                app: 'resources/js/app.tsx',
-            },
-        },
-    },
     server: {
         host: '127.0.0.1',
         port: 5173,
