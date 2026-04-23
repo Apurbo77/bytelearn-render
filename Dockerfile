@@ -30,11 +30,14 @@ RUN composer install --optimize-autoloader --no-dev --no-scripts
 # Copy package files
 COPY package.json package-lock.json ./
 
-# Install Node dependencies and build assets
-RUN npm install && npm run build
+# Install Node dependencies
+RUN npm install
 
 # Copy the rest of the application
 COPY . .
+
+# Build assets
+RUN npm run build
 
 # Run package discovery
 RUN composer run-script post-autoload-dump
