@@ -10,6 +10,13 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    build: {
+        rollupOptions: {
+            input: {
+                app: 'resources/js/app.tsx',
+            },
+        },
+    },
     server: {
         host: '127.0.0.1',
         port: 5173,
