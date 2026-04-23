@@ -25,7 +25,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 COPY composer.json composer.lock ./
 
 # Install PHP dependencies
-RUN composer install --optimize-autoloader --no-dev
+RUN composer install --optimize-autoloader --no-dev --no-scripts
 
 # Copy package files
 COPY package.json package-lock.json ./
@@ -35,6 +35,9 @@ RUN npm install && npm run build
 
 # Copy the rest of the application
 COPY . .
+
+# Run package discovery
+RUN composer run-script post-autoload-dump
 
 # Make start script executable
 RUN chmod +x start.sh
