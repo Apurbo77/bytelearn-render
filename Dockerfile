@@ -37,7 +37,7 @@ RUN npm install
 COPY . .
 
 # Set permissions for Laravel directories
-RUN mkdir -p bootstrap/cache storage/framework/sessions storage/framework/views storage/framework/cache \
+RUN mkdir -p bootstrap/cache storage/logs storage/framework/sessions storage/framework/views storage/framework/cache \
     && chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
