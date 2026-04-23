@@ -62,5 +62,4 @@ RUN echo '<VirtualHost *:80>\n\
 EXPOSE 80
 
 # Start the application
-CMD ["./start.sh"]</content>
-<parameter name="filePath">c:\Users\MSI\Documents\GitHub\Bytelearn\Dockerfile
+CMD ["./start.sh"]
