@@ -36,6 +36,11 @@ RUN npm install
 # Copy the rest of the application
 COPY . .
 
+# Set permissions for Laravel directories
+RUN mkdir -p bootstrap/cache storage/framework/sessions storage/framework/views storage/framework/cache \
+    && chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
+
 # Build assets
 RUN npm run build
 
@@ -45,10 +50,8 @@ RUN composer run-script post-autoload-dump
 # Make start script executable
 RUN chmod +x start.sh
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage \
-    && chmod -R 755 /var/www/html/bootstrap/cache
+# Final permission check
+RUN chown -R www-data:www-data /var/www/html
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
